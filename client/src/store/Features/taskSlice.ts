@@ -55,9 +55,12 @@ export const taskSlice = createSlice({
     },    
     setLoading: (state) => {
       state.loading = !state.loading
+    },
+    setStateNull: (state) => {
+      state.userTasks = null;
     }
   },
 });
 
 export default taskSlice.reducer;
-export const { setUserTasks, addTask, removeTask, setLoading, updateUserTask } = taskSlice.actions;
+export const { setUserTasks, addTask, removeTask, setLoading, updateUserTask, setStateNull } = taskSlice.actions;

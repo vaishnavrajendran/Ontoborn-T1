@@ -2,7 +2,7 @@ import { fetchUserTasks } from '../actions/taskActions'
 import Card from '../components/Card'
 import Loading from '../components/Loading'
 import Navbar from '../components/Navbar'
-import { setUserTasks } from '../store/Features/taskSlice'
+import { setStateNull, setUserTasks } from '../store/Features/taskSlice'
 import { setLogout } from '../store/Features/userSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { useEffect } from 'react'
@@ -24,6 +24,7 @@ const HomePage = () => {
   const logout = () => {
     localStorage.clear();
     dispatch(setLogout())
+    dispatch(setStateNull())
   }
 
   return (
@@ -32,7 +33,11 @@ const HomePage = () => {
         <Navbar onLogout={logout} />
       </header>
       <main>
-        {loading ? <Loading /> : (
+        {loading ? (
+        <div className='min-h-screen w-full justify-center'>
+          <Loading />
+        </div>
+        ) : (
           tasks?.map(data => (
             <Card data={data} />
           ))
