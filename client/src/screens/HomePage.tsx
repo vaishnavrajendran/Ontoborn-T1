@@ -34,15 +34,14 @@ const HomePage = () => {
       </header>
       <main>
         {loading ? (
-        <div className='min-h-screen w-full justify-center'>
-          <Loading />
-        </div>
+          <div className='flex min-h-screen w-full justify-center bg-black items-center'>
+            <Loading />
+          </div>
         ) : (
           tasks?.map(data => (
             <Card data={data} />
           ))
         )
-
         }
       </main>
     </div>
