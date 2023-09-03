@@ -5,7 +5,8 @@ import { useState } from "react";
 import EditModal from "./EditModal";
 
 type CardData = {
-    data: data
+    data: data,
+    index: number
 }
 
 type data = {
@@ -21,8 +22,9 @@ type classType = {
     Completed: string;
 }
 
-const Card = ({ data }: CardData) => {
-
+const Card = ({ data, index }: CardData) => {
+    console.log("INdex", index);
+    
     const token = useAppSelector(state => state.person.userInfo.token)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const props = {
@@ -58,9 +60,9 @@ const Card = ({ data }: CardData) => {
         <div className="flex items-center justify-center py-8 px-4 w-full" key={data.userId}>
             <div className="md:w-96 rounded-md shadow-lg py-4 px-5 w-full bg-white dark:bg-gray-800">
                 <div className="flex justify-between">
-                    <h2 tabIndex={0} className="focus:outline-none text-xs leading-3 text-gray-600 dark:text-gray-100">Tasks</h2>
+                    <h2 tabIndex={0} className="focus:outline-none text-xs leading-3 text-gray-600 dark:text-gray-100">Task - {index+1}</h2>
                     <div className="flex">
-                        <button className="text-white font-bold"
+                        <button className="bg-blue-500 text-white py-2 px-2 rounded hover:bg-blue-600 transition duration-200"
                             onClick={() => {
                                 deleteTask()
                                 dispatch(setLoading())
@@ -68,7 +70,7 @@ const Card = ({ data }: CardData) => {
                         >Delete</button>
                     </div>
                 </div>
-                <div className="pt-6 relative">
+                <div className="pt-3 relative">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             <p tabIndex={0} className="focus:outline-none text-gray-600 dark:text-gray-100 text-sm leading-none pt-2">{data.name}</p>

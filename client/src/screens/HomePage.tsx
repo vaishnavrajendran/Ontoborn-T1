@@ -34,12 +34,12 @@ const HomePage = () => {
       </header>
       <main>
         {loading ? (
-          <div className='flex min-h-screen w-full justify-center bg-black items-center'>
+          <div className='flex min-h-screen w-full justify-center items-center'>
             <Loading />
           </div>
         ) : (
-          tasks?.map(data => (
-            <Card data={data} />
+          tasks?.map((data, index) => (
+            <Card data={data} index={index} />
           ))
         )
         }
